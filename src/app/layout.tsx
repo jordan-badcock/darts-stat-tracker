@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "LeagueMaster Darts",
+  title: "Dart Manager",
   description: "League management and darts stats that matter.",
 };
 
