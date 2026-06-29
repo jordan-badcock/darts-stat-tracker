@@ -24,7 +24,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What the product is
 
-A **darts league stats-tracking website**. The intended flow and feature set are defined in `Darts.pdf` (the source of truth for requirements):
+A **darts league stats-tracking website**. The intended flow and feature set are defined in `docs/Darts.pdf` (the source of truth for requirements):
 
 - **Onboarding** — A league organizer signs up with league name, location, and email. They receive a preset coded sheet linking to the league they create, and the signing-up email becomes the **admin account**. Leagues get a member/stat sheet and a schedule sheet with **game codes**.
 - **Personal stats** — 1-dart avg, 3-dart avg, tonnes, 180s, finishes, division (A/B/C/D), and multi-level rank (club / region / provincial / national / world). "Power rankings" show weekly movement (e.g. +4 / -7) relative to the overall club.
@@ -35,7 +35,7 @@ When implementing features, treat the PDF as the spec and keep the multi-tenant 
 
 ## Brand / design direction
 
-`league_darts_5_brands_hexcodes.html` is a self-contained design exploration presenting five candidate brand identities (LeagueMaster Darts, DartsLeague HQ, Open Leg Darts, Bullpen League, Chalk Line Darts), each with full hex palettes, logo SVGs, color psychology, and a website preview. No final brand has been chosen — **all five are implemented as switchable themes** in the prototype (default `leaguemaster`), so the file's palettes are the source of truth for the `globals.css` theme blocks. The UI is dark-mode-first. Use this file as the reference for palette and visual tone; if a brand is later chosen, the others can be dropped from the theme map.
+`docs/league_darts_5_brands_hexcodes.html` is a self-contained design exploration presenting five candidate brand identities (LeagueMaster Darts, DartsLeague HQ, Open Leg Darts, Bullpen League, Chalk Line Darts), each with full hex palettes, logo SVGs, color psychology, and a website preview. No final brand has been chosen — **all five are implemented as switchable themes** in the prototype (default `leaguemaster`), so the file's palettes are the source of truth for the `globals.css` theme blocks. The UI is dark-mode-first. Use this file as the reference for palette and visual tone; if a brand is later chosen, the others can be dropped from the theme map.
 
 ## Tooling
 
