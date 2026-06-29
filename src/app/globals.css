@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/*
+  Brand theming.
+  Five candidate brands from league_darts_5_brands_hexcodes.html, wired as
+  swappable CSS-variable palettes. Switch live by setting data-theme on <html>.
+  Semantic tokens (ink / surface / accent ...) are mapped to Tailwind utilities
+  in @theme inline below, so components never hardcode a hex value.
+*/
+
+/* Default = LeagueMaster (navy + gold) */
+:root,
+[data-theme="leaguemaster"] {
+  --bg: #060d18;
+  --surface-1: #0c1a2e;
+  --surface-2: #112240;
+  --line: #1c3457;
+  --ink: #e0eaf8;
+  --ink-2: #a9bbd6;
+  --ink-3: #6e89ae;
+  --accent: #3a7ab0;
+  --accent-contrast: #ffffff;
+  --accent-bright: #5ba3d9;
+  --gold: #c8a84b;
+  --up: #3fb37f;
+  --down: #d8654b;
+}
+
+[data-theme="dartsleaguehq"] {
+  --bg: #120800;
+  --surface-1: #1a0e04;
+  --surface-2: #2a1500;
+  --line: #3a2410;
+  --ink: #e8d5b8;
+  --ink-2: #c9ae86;
+  --ink-3: #8a6a45;
+  --accent: #d85a30;
+  --accent-contrast: #120800;
+  --accent-bright: #ef9f27;
+  --gold: #ef9f27;
+  --up: #2fa46a;
+  --down: #d8654b;
+}
+
+[data-theme="openleg"] {
+  --bg: #040a07;
+  --surface-1: #080f0c;
+  --surface-2: #0d2218;
+  --line: #16382a;
+  --ink: #e0f4ec;
+  --ink-2: #a7cfc0;
+  --ink-3: #5e8475;
+  --accent: #1d9e75;
+  --accent-contrast: #040a07;
+  --accent-bright: #5dcaa5;
+  --gold: #5dcaa5;
+  --up: #1d9e75;
+  --down: #d85a30;
+}
+
+[data-theme="bullpen"] {
+  --bg: #0a0512;
+  --surface-1: #130820;
+  --surface-2: #1e0a2a;
+  --line: #301641;
+  --ink: #f0e8ff;
+  --ink-2: #c9b6e0;
+  --ink-3: #7e5f9b;
+  --accent: #7b3fbf;
+  --accent-contrast: #ffffff;
+  --accent-bright: #9b5fdf;
+  --gold: #c8a84b;
+  --up: #4fc78e;
+  --down: #e5654b;
+}
+
+[data-theme="chalkline"] {
+  --bg: #0e0e0a;
+  --surface-1: #141410;
+  --surface-2: #222218;
+  --line: #33332a;
+  --ink: #f5f0e0;
+  --ink-2: #c9c2a8;
+  --ink-3: #8a8060;
+  --accent: #d4c88a;
+  --accent-contrast: #0e0e0a;
+  --accent-bright: #f5f0e0;
+  --gold: #d4c88a;
+  --up: #6e8c5a;
+  --down: #8b2020;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-bright: var(--accent-bright);
+  --color-gold: var(--gold);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Stats read as a product only when digits align. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Visible keyboard focus on every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@keyframes pulse-bg {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.skeleton {
+  background: var(--surface-2);
+  animation: pulse-bg 1.4s ease-in-out infinite;
+}
