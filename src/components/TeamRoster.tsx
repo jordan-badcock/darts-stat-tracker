@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Player } from "@/lib/types";
 import { Avatar, DivisionBadge } from "@/components/ui";
+import { PlayerStatCard } from "@/components/PlayerStatCard";
 
 // Visual-only add/drop to demonstrate that players are moveable assets, not
 // fixtures of a team. Local state only — no persistence yet.
@@ -18,6 +18,7 @@ export function TeamRoster({
 }) {
   const [ids, setIds] = useState<string[]>(roster.map((p) => p.id));
   const [adding, setAdding] = useState(false);
+  const [selected, setSelected] = useState<Player | null>(null);
 
   const byId = useMemo(() => {
     const m = new Map<string, Player>();
@@ -48,9 +49,12 @@ export function TeamRoster({
             <Avatar initials={p.initials} size={36} />
             <span className="min-w-0 flex-1">
               <span className="flex items-center gap-2">
-                <Link href={`/players/${p.id}`} className="truncate font-medium hover:text-accent-bright">
+                <button
+                  onClick={() => setSelected(p)}
+                  className="truncate text-left font-medium hover:text-accent-bright"
+                >
                   {p.name}
-                </Link>
+                </button>
                 {p.id === captainId ? (
                   <span className="rounded-full border border-gold/40 px-2 py-0.5 text-[10px] font-medium text-gold">
                     Captain
@@ -98,6 +102,10 @@ export function TeamRoster({
             ) : null}
           </ul>
         </div>
+      ) : null}
+
+      {selected ? (
+        <PlayerStatCard player={selected} onClose={() => setSelected(null)} />
       ) : null}
     </div>
   );

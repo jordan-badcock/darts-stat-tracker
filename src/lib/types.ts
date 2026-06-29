@@ -22,6 +22,7 @@ export interface Player {
   initials: string;
   teamId: string | null; // null = free agent (moveable asset)
   division: Division;
+  gamesPlayed: number;
   oneDartAvg: number;
   threeDartAvg: number; // the headline number players quote
   tonnes: number; // scores of 100+

@@ -28,7 +28,7 @@ export const teams: Team[] = [
   { id: "t6", name: "The Arrows", initials: "AR", captainId: "p21", legWins: 40, legLosses: 70, gameWins: 4, gameLosses: 10, winPct: 29, streak: 1, ranks: r(6, 16, 28, 121, 1340), threeDartAvg: 75.6, tonnes: 244, oneEighties: 5, finishes: 31 },
 ];
 
-export const players: Player[] = [
+const playerSeed: Omit<Player, "gamesPlayed">[] = [
   // Bullseye Bandits
   { id: "p1", name: "Danny Whelan", initials: "DW", teamId: "t1", division: "A", oneDartAvg: 33.8, threeDartAvg: 101.3, tonnes: 142, oneEighties: 12, finishes: 21, checkoutPct: 48, ranks: r(1, 2, 6, 33, 410), powerDelta: 2 },
   { id: "p2", name: "Marie Squires", initials: "MS", teamId: "t1", division: "A", oneDartAvg: 31.2, threeDartAvg: 95.6, tonnes: 121, oneEighties: 7, finishes: 18, checkoutPct: 44, ranks: r(3, 6, 14, 61, 720), powerDelta: 4 },
@@ -65,6 +65,25 @@ export const players: Player[] = [
   { id: "p23", name: "Cian Lynch", initials: "CL", teamId: "t6", division: "D", oneDartAvg: 22.7, threeDartAvg: 68.1, tonnes: 43, oneEighties: 0, finishes: 4, checkoutPct: 26, ranks: r(27, 48, 97, 460, 4910), powerDelta: 8 },
   { id: "p24", name: "Tess Malone", initials: "TM", teamId: "t6", division: "D", oneDartAvg: 20.6, threeDartAvg: 61.8, tonnes: 30, oneEighties: 0, finishes: 2, checkoutPct: 22, ranks: r(33, 58, 118, 570, 6020), powerDelta: -2 },
 ];
+
+// Games played, derived deterministically (week 7 → roughly 7-9 games each).
+const withGames: Player[] = playerSeed.map((p, i) => ({
+  ...p,
+  gamesPlayed: 7 + ((i * 2 + p.finishes) % 3),
+}));
+
+// Club rank is the player's standing *within this club*, so it must be a
+// contiguous 1..N over the roster (ranked here by 3-dart average). The
+// region / provincial / national / world ranks are left as-is — those place
+// the player in much larger pools, so big, non-contiguous numbers are correct.
+const clubOrder = [...withGames]
+  .sort((a, b) => b.threeDartAvg - a.threeDartAvg)
+  .map((p) => p.id);
+
+export const players: Player[] = withGames.map((p) => ({
+  ...p,
+  ranks: { ...p.ranks, club: clubOrder.indexOf(p.id) + 1 },
+}));
 
 export const schedule: ScheduleEntry[] = [
   { id: "g1", week: 6, date: "Mar 4", homeTeamId: "t1", awayTeamId: "t4", gameCode: "RC-W6-BBTM", status: "final", homeScore: 6, awayScore: 3 },

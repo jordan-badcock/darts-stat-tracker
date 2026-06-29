@@ -13,7 +13,7 @@ const I = (path: React.ReactNode) => (
 
 const ITEMS: Item[] = [
   { href: "/dashboard", label: "Overview", icon: I(<><path d="M3 12l9-8 9 8" /><path d="M5 10v10h14V10" /></>) },
-  { href: "/players", label: "Players", icon: I(<><circle cx="12" cy="8" r="3.2" /><path d="M5 20a7 7 0 0 1 14 0" /></>) },
+  { href: "/players", label: "Stats", icon: I(<><circle cx="12" cy="8" r="3.2" /><path d="M5 20a7 7 0 0 1 14 0" /></>) },
   { href: "/teams", label: "Teams", icon: I(<><circle cx="9" cy="9" r="2.6" /><circle cx="17" cy="10" r="2.2" /><path d="M3 19a6 6 0 0 1 12 0" /><path d="M15 19a5 5 0 0 1 6-1.5" /></>) },
   { href: "/schedule", label: "Schedule", icon: I(<><rect x="3.5" y="4.5" width="17" height="16" rx="2" /><path d="M3.5 9h17M8 3v3M16 3v3" /></>) },
   { href: "/standings", label: "Standings", icon: I(<><path d="M6 21V9M12 21V4M18 21v-7" /></>) },
