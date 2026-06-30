@@ -30,16 +30,19 @@ export default async function TeamsPage({
           ctaHref="/teams?view=empty"
         />
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {standings(teams).map((t) => {
+        <ul className="divide-y divide-line overflow-hidden rounded-xl border border-line bg-surface-1">
+          {standings(teams).map((t, i) => {
             const captain = playerById(players, t.captainId);
             return (
               <li key={t.id}>
                 <Link
                   href={`/teams/${t.id}`}
-                  className="flex items-center gap-4 rounded-xl border border-line bg-surface-1 p-4 transition-colors hover:bg-surface-2"
+                  className="flex items-center gap-4 px-4 py-3 transition-colors hover:bg-surface-2"
                 >
-                  <Avatar initials={t.initials} size={48} />
+                  <span className="tnum w-5 shrink-0 text-center font-semibold text-gold">
+                    {i + 1}
+                  </span>
+                  <Avatar initials={t.initials} size={44} />
                   <div className="min-w-0 flex-1">
                     <div className="truncate font-medium">{t.name}</div>
                     <div className="truncate text-xs text-ink-3">

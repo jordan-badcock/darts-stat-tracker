@@ -39,7 +39,7 @@ export default async function PlayerPage({
       <Card className="mb-6 p-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
-            <Avatar initials={player.initials} size={64} />
+            <Avatar initials={team ? team.initials : player.initials} size={64} />
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-semibold">{player.name}</h1>
